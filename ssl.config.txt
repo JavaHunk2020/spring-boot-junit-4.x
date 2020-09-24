@@ -1,0 +1,61 @@
+Microsoft Windows [Version 10.0.18362.1082]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\javahunk>F:
+
+F:\>mkdir Barsha
+
+F:\>cd Barsha
+
+F:\Barsha>keytool  -genkey  -keyalg RSA  -alias  selfsigned  -keystore cubic_store.jks  -storepass  root@123  -validity 360  -keysize  2048
+What is your first and last name?
+  [Unknown]:  localhost
+What is the name of your organizational unit?
+  [Unknown]:  CubicIT
+What is the name of your organization?
+  [Unknown]:  Cubic Technologies
+What is the name of your City or Locality?
+  [Unknown]:  Fremont
+What is the name of your State or Province?
+  [Unknown]:  CAL
+What is the two-letter country code for this unit?
+  [Unknown]:  US
+Is CN=localhost, OU=CubicIT, O=Cubic Technologies, L=Fremont, ST=CAL, C=US correct?
+  [no]:  yes
+
+
+F:\Barsha>dir
+ Volume in drive F is data
+ Volume Serial Number is 3871-E823
+
+ Directory of F:\Barsha
+
+09/25/2020  03:23 AM    <DIR>          .
+09/25/2020  03:23 AM    <DIR>          ..
+09/25/2020  03:23 AM             2,607 cubic_store.jks
+               1 File(s)          2,607 bytes
+               2 Dir(s)  935,171,592,192 bytes free
+
+F:\Barsha>dir
+ Volume in drive F is data
+ Volume Serial Number is 3871-E823
+ 
+ 
+ #Running application on own domain
+ C:\Windows\System32\drivers\etc
+ 
+ #
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+# BEGIN section for OpenVPN Client SSL sites
+127.94.0.1	client.openvpn.net
+# END section for OpenVPN Client SSL sites
+127.0.0.1 asanr.local
+127.0.0.1 cubicit.com
+127.0.0.1 pknagendra.com
