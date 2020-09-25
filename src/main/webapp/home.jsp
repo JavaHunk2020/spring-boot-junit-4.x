@@ -16,12 +16,15 @@
 
 <div class="container">
   <h2>Welcome to home!!!</h2>
-   <img src="img/student.png" style="height: 120px;">
+   <a href="${pageContext.request.contentType}/customers">
+   <img src="${pageContext.request.contentType}/img/student.png" style="height: 120px;">
+   Customers!
+   </a>
    <hr/>
    <div style="width: 60%">
    
-   <img src="img/home.jpg">
- 
+  
+   <img src="${pageContext.request.contentType}/img/home.jpg">
   </div>
 </div>
 

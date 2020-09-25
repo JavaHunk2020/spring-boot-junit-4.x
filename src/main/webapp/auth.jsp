@@ -68,14 +68,14 @@
    <span style="font-size: 18;color: blue;font-weight: bold;" id="emessage">${message}</span>
    <hr/>
    <div style="width: 60%">
-  <form action="authUser" method="POST" name="authForm">
+  <form action="oauth" method="POST" name="authForm">
     <div class="form-group">
       <label>Username/Email:</label>
       <input type="text" class="form-control"  placeholder="Enter Username" name="username" id="username" onkeyup="clearText();">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control"  placeholder="Enter password" name="pswd" id="pswd" onkeyup="clearText();">
+      <input type="password" class="form-control"  placeholder="Enter password" name="password" id="pswd" onkeyup="clearText();">
     </div>
     <button type="button" class="btn btn-primary" onclick="validateForm();">Login</button>
     

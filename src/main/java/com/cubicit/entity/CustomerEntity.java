@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,8 +56,21 @@ public class CustomerEntity {
 	@Column(length=100)
 	private String company;
 	
+	@Column(length=100)
+	private String passsword;
 	
 	
+	
+	
+	public String getPasssword() {
+		return passsword;
+	}
+
+	public void setPasssword(String passsword) {
+		this.passsword = passsword;
+	}
+
+
 	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL) // login is an attribute present inside CustomerQuestionAnswer entity
 	private List<LaptopEntity> laptops;
 	
@@ -64,7 +78,7 @@ public class CustomerEntity {
 	@OneToOne(cascade = CascadeType.ALL,mappedBy="customerEntity")
 	private AddressEntity addressEntity;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "customer_roles", joinColumns = @JoinColumn(name = "cid"), inverseJoinColumns = @JoinColumn(name = "rid"))
 	private Set<RoleEntity> roles;
 	
