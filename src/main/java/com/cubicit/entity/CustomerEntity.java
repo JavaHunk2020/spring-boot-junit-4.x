@@ -78,7 +78,7 @@ public class CustomerEntity {
 	@OneToOne(cascade = CascadeType.ALL,mappedBy="customerEntity")
 	private AddressEntity addressEntity;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "customer_roles", joinColumns = @JoinColumn(name = "cid"), inverseJoinColumns = @JoinColumn(name = "rid"))
 	private Set<RoleEntity> roles;
 	
