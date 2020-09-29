@@ -8,6 +8,8 @@ public class CustomerVO {
 	private String name;
 	private String email;
 	private String debitcard;
+	private String password;
+	
 	private String valid;
 	private int cvv;
 	private String mobile;
@@ -20,6 +22,14 @@ public class CustomerVO {
 	private String street;
 	private String state;
 	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getStreet() {
 		return street;

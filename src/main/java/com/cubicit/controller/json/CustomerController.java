@@ -33,6 +33,19 @@ public class CustomerController {
 	// and finally populating this raw data into this object
 	@PostMapping("/customers")
 	public ApplicationResponseVO createCustomer(@RequestBody CustomerVO customerVO){
+		
+		if(customerVO.getAge()==0){
+			customerVO.setAge(12);
+		}
+		
+		if(customerVO.getCompany()==null){
+			customerVO.setCompany("Technihunk1823");
+		}
+		
+		if(customerVO.getCvv()==0){
+			customerVO.setCvv(334);
+		}
+		
 		System.out.println(customerVO);
 		customerService.save(customerVO);
 		//We will save it into database

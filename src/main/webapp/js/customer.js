@@ -203,6 +203,43 @@
     	 this.description=description;
      }
      
+     
+     
+ function addNewCustomer(){
+    	 
+    	 let name=$("#cname").val();
+    	 let email=$("#cemail").val();
+    	 let mobile=$("#cmobile").val();
+    	 let password=$("#cpassword").val();
+    	 var customer={name:name,email:email,password:password,mobile:mobile};
+    	
+    	   //convert above object into JSON
+   	     var jsonData=JSON.stringify(customer);
+   	
+    	   //Creating 
+     	   const options = {
+                    method: 'POST',
+                    body: jsonData,
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                    }
+                  };
+     	   
+     	   var promise=fetch("v3/customers",options);
+     	   promise.then(response=>response.json())
+     	   .then(function(data){
+     		   //	//data ={"message":"Role is created successfully with id = 10","status":"success"}
+     		   console.log(data);
+     		   $("#mmessage").html(data.message);
+     		  $('#addCustomerPopup').modal('hide');
+     	   }) .catch(err =>{
+               console.log(err)
+              // dispatch(loginFailed())
+          });
+    	 
+     }
+     
      function addNewRole(){
     	 
     	 let proleName=$("#roleName").val();

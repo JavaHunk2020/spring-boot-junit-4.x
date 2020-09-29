@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,10 @@ public class CustomerServiceImpl {
 	
 	@Autowired	
 	private AddressDaoRepository addressDaoRepository;
+	
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	
 	public List<CustomerVO> findAllCustomers(){
@@ -71,11 +76,15 @@ public class CustomerServiceImpl {
 	
 	
 	public String save(CustomerVO customerVO){
+		customerVO.setPassword(encoder.encode(customerVO.getPassword()));
 		CustomerEntity customerEntity=new CustomerEntity();
 		//What this line is doing?
 		BeanUtils.copyProperties(customerVO, customerEntity);
-		CustomerEntity result=customerDaoRepository.save(customerEntity);
+		customerEntity.setPasssword(customerVO.getPassword());
+		//Encrypting password using spring password encoder
+	
 		
+		CustomerEntity result=customerDaoRepository.save(customerEntity);
 		AddressEntity addressEntity=new AddressEntity();
 		addressEntity.setState(customerVO.getState());
 		addressEntity.setStree(customerVO.getStreet());

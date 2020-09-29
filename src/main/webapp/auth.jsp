@@ -63,7 +63,7 @@
 
 <div class="container">
   <h2>Login Page!!!</h2>
-   <img src="assets/img/student.png" style="height: 120px;">
+   <img src="img/student.png" style="height: 120px;">
    <hr/>
    <span style="font-size: 18;color: blue;font-weight: bold;" id="emessage">${message}</span>
    <hr/>

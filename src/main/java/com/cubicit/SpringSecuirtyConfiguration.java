@@ -53,7 +53,7 @@ public class SpringSecuirtyConfiguration extends WebSecurityConfigurerAdapter {
     .accessDeniedPage("/access/denied")
     .and()
     .logout().logoutUrl("/customer/logout")
-    .logoutSuccessUrl("/logout/success")
+    .logoutSuccessUrl("/oauth?error=true")
     .invalidateHttpSession(true) 
     .deleteCookies("JSESSIONID");
   } 

@@ -25,6 +25,10 @@
    Customer Data
     <button type="button" class="btn btn-danger" onclick="loadCustomer();">Load Customers</button>
     <button type="button" class="btn btn-primary" onclick="openRoleModal();">Add Role</button>
+     <button type="button" class="btn btn-warning" onclick="openRoleModal();">Change Password</button>
+    <button type="button" class="btn btn-primary" onclick="$('#addCustomerPopup').modal('show')">Add Customer</button>
+       <a href="${pageContext.request.contextPath}/customer/logout"><button type="button" class="btn btn-warning">Logout</button></a>
+    
    ${message}
    </span>
    <hr/>
@@ -143,6 +147,54 @@
     </div>
   </div>
 
+
+
+<!-- The Modal -->
+  <div class="modal" id="addCustomerPopup">
+    <div class="modal-dialog">
+      <div class="modal-content" style="width: 540px;">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Customer!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+             <hr/>
+             <div class="from-group">
+                 <label for="cname">Name : </label>
+                 <input type="text" class="form-control" name="name" id="cname">
+             </div>
+             
+              <div class="from-group">
+                 <label for="cemail">Email : </label>
+                 <input type="text" class="form-control" name="email" id="cemail">
+             </div>
+             
+               <div class="from-group">
+                 <label for="cmobile">Mobile : </label>
+                 <input type="text" class="form-control" name="mobile" id="cmobile">
+             </div>
+             
+             
+               <div class="from-group">
+                 <label for="cpassword">Password : </label>
+                 <input type="text" class="form-control" name="password" id="cpassword">
+             </div>
+             
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="addNewCustomer()">Add Customer</button>
+          <button type="button" class="btn btn-warning" onclick="$('#addCustomerPopup').modal('hide');">Cancel</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 
 <!-- The Modal -->
