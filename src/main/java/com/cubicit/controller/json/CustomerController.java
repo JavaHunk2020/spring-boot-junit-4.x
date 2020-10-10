@@ -3,6 +3,7 @@ package com.cubicit.controller.json;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cubicit.SwaggerCtrl;
 import com.cubicit.controller.vo.ApplicationResponseVO;
 import com.cubicit.controller.vo.CustomerVO;
 import com.cubicit.controller.vo.UpdateRoles;
@@ -20,6 +22,8 @@ import com.cubicit.service.CustomerServiceImpl;
 //this annotation ensures all the method inside will generate
 //raw data ->>JSON,XML etc
 @RequestMapping("/v3")
+@CrossOrigin(origins = "*")
+@SwaggerCtrl
 public class CustomerController {
 	
 	//Spring data jpa - Spring jdbc
@@ -108,5 +112,13 @@ public class CustomerController {
 		List<CustomerVO> customerVOs = customerService.findAllCustomers();
 		return customerVOs;
 	}
+	
+	@GetMapping("/ccustomers")
+	public List<CustomerVO> getCustomers(String name,String email){
+		List<CustomerVO> customerVOs = customerService.csearch(name,email);
+		return customerVOs;
+	}
+	
+	
 
 }

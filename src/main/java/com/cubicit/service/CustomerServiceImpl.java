@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,33 @@ public class CustomerServiceImpl {
 	
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	
+		
+	public List<CustomerVO> csearch(String name,String email){
+		CustomerEntity example = CustomerEntity
+			    .builder()
+			    .name(name) // firstName from parameter
+			    .email(email) // lastName from parameter
+			    .build();
+	
+			List<CustomerVO> customerVOs=new ArrayList<CustomerVO>();
+			ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("cid","cvv","age").withIgnoreNullValues();
+			
+			List<CustomerEntity> entities=customerDaoRepository.findAll(Example.of(example,matcher));
+			for(CustomerEntity entity :entities) {
+				CustomerVO customerVO=new CustomerVO();
+				BeanUtils.copyProperties(entity, customerVO);
+				//Setting address manually
+				if(entity.getAddressEntity()!=null){
+					customerVO.setState(entity.getAddressEntity().getState());
+					customerVO.setStreet(entity.getAddressEntity().getStree());	
+				}
+				
+				customerVOs.add(customerVO);
+			}
+			return customerVOs;
+	}
 	
 	
 	public List<CustomerVO> findAllCustomers(){

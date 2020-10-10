@@ -18,8 +18,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDeleteAll;
+
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Entity //means this class or object can be saved into the database
 @Table(name="customers_tbl")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerEntity {
 
 	@Id
