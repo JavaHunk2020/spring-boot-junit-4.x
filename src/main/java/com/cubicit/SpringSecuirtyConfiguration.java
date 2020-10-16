@@ -44,6 +44,7 @@ public class SpringSecuirtyConfiguration extends WebSecurityConfigurerAdapter {
       .antMatchers("/oauth").permitAll().
       antMatchers("/obiz").permitAll().
       antMatchers("/v3/customers").permitAll().
+      antMatchers("/v3/jsonAuth").permitAll().
       antMatchers("/v3/ccustomers").permitAll().
       // Disallow everything else..
       anyRequest().authenticated();

@@ -1,8 +1,11 @@
 package com.cubicit.controller.json;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,9 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cubicit.SwaggerCtrl;
+import com.cubicit.controller.Auth;
 import com.cubicit.controller.vo.ApplicationResponseVO;
 import com.cubicit.controller.vo.CustomerVO;
 import com.cubicit.controller.vo.UpdateRoles;
@@ -78,6 +83,23 @@ public class CustomerController {
 		applicationResponseVO.setMessage("customer is added email = "+customerVO.getEmail());
 		return applicationResponseVO;
 	}
+	
+	@PostMapping("/jsonAuth")
+	@ResponseStatus(code=HttpStatus.OK)
+	public Map<String,Object> authUser(@RequestBody Auth auth){
+		CustomerVO  customerVO=customerService.findByEmail(auth.getEmail());
+		Map<String,Object> response =new HashMap<String, Object>();
+		if(customerVO==null){
+			response.put("message", "Sorry username and password are not correct!");
+			response.put("code", "400");
+		}else{
+			response.put("message", " username and password are  correct!");
+			response.put("code", "200");	
+		}
+		return response;
+	}
+	
+	  
 	
 	@GetMapping(value="/customers",params={"cid"})
 	public CustomerVO getCustomerByCid(@RequestParam int  cid){
